@@ -7,7 +7,7 @@ const Header = (props) => {
   const top = useIsScrolled();
   return (
     <header
-      className={`font-poppins fixed w-full z-10  py-4 flex items-center justify-between px-36 bg-white ${
+      className={`font-poppins fixed w-full z-10  py-4 flex items-center justify-between xl:px-36 bg-white lg:px-32 md:px-20 sm:px-16 px-12  ${
         !top && "shadow-xl"
       }`}
     >
@@ -46,7 +46,7 @@ const Header = (props) => {
         <h4 className="text-xl font-extrabold">WeCook</h4>
       </div>
       <div className=" flex items-center justify-between gap-3">
-        <div className=" relative">
+        <div className=" relative md:block hidden">
           <input
             type="text"
             name="search"

@@ -4,13 +4,13 @@ import Button from "./Button";
 const HeroSection = (props) => {
   const { handleLocation, value, handleInput } = props;
   return (
-    <section className="w-screen pt-36 font-poppins">
-      <span className="w-full relative ">
-        <img src={heroBanner} />
-      </span>
-      <div className="absolute top-[5rem] grid grid-cols-2 gap-[12rem] mt-20 ">
-        <div className="ml-36 space-y-3">
-          <h1 className="text-[3rem] leading-[4rem] font-medium">
+    <section className=" 2xl:pt-56 xl:pt-36 lg:pt-36 md:pt-36 pt-36 font-poppins">
+      <div className="w-full relative ">
+        <img className="w-full sm:block hidden  " src={heroBanner} />
+      </div>
+      <div className="absolute 2xl:top-[8rem] xl:top-[5rem] lg:top-[4rem] md:top-[3rem] top-[2rem] grid md:grid-cols-[1.5fr,1fr]  mt-20 ">
+        <div className="2xl:ml-44  xl:ml-36 lg:ml-32 md:ml-24 sm:ml-20  mx-14 2xl:space-y-6 xl:space-y-6 md:space-y-4 space-y-3">
+          <h1 className="2xl:text-[4rem] xl:text-[3rem] lg:text-[2.2rem] md:text-[2rem] sm:text-[1.5rem] 2xl:leading-[5rem] xl:leading-[4rem] lg:leading-[3rem] md:leading-[2.6rem] font-medium">
             Premium
             <span className="text-[#FC8019] mx-2">
               Restaruants
@@ -20,7 +20,7 @@ const HeroSection = (props) => {
             <br />
             <span className="text-[#FC8019] "> Door Step</span>
           </h1>
-          <p className="text-xs font-Inter font-normal ">
+          <p className="xl:text-sm lg:text-xs md:text-[10px] text-[10px] font-Inter font-normal w-[80%]">
             Experience the pinnacle of culinary excellence without leaving your
             home with Premium Restaurants, Food at Your Doorstep. Indulge in the
             finest cuisines from top-rated restaurants, carefully curated and
@@ -38,11 +38,15 @@ const HeroSection = (props) => {
               placeholder="Enter your location you looking  "
               onChange={handleInput}
             />
-            <Button btnName="Search" handleClick={handleLocation} />
+            <Button btnName="Submit" handleClick={handleLocation} />
           </div>
         </div>
-        <div className="ml-8">
-          <img className="w-[250px]" src={image} alt="" />
+        <div className="ml-8 md:block hidden">
+          <img
+            className="2xl:w-[290px] xl:w-[250px] md:mr-4 lg:w-[200px] md:w-[180px]"
+            src={image}
+            alt=""
+          />
         </div>
       </div>
     </section>
