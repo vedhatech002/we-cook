@@ -7,6 +7,9 @@ module.exports = {
         poppins: "'Poppins', sans-serif",
         Inter: "'Inter', sans-serif",
       },
+      backgroundImage: {
+        "hero-bg": "./src/assets/hero-bg.png",
+      },
     },
   },
   plugins: [],
