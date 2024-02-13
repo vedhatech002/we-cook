@@ -4,7 +4,7 @@ import Button from "./Button";
 const HeroSection = (props) => {
   const { handleLocation, value, handleInput } = props;
   return (
-    <section className=" 2xl:pt-56 xl:pt-36 lg:pt-36 md:pt-36 pt-36 font-poppins">
+    <section className=" 2xl:py-56 xl:py-36 lg:py-36 md:py-36 py-36 font-poppins">
       <div className="w-full relative ">
         <img className="w-full sm:block hidden  " src={heroBanner} />
       </div>
@@ -33,7 +33,6 @@ const HeroSection = (props) => {
               name="search-location"
               id="search-location"
               value={value}
-              v
               className="border-[1.5px] border-zinc-500  rounded-lg outline-none text-zinc-500  px-4 py-1 text-sm w-[20rem] "
               placeholder="Enter your location you looking  "
               onChange={handleInput}

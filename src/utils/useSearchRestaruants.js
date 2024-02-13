@@ -46,6 +46,7 @@ const useSearchRestaruants = (location) => {
   useEffect(() => {
     fetchPlaceId();
   }, [location]);
+
   if (location === "") {
     return null;
   }

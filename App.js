@@ -3,33 +3,28 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./src/main.css";
 import Header from "./src/components/Header";
-import { useState, useEffect } from "react";
-import useSearchRestaruants from "./src/utils/useSearchRestaruants";
-import HeroSection from "./src/components/HeroSection";
+import Body from "./src/components/Body";
 
 const AppLayout = () => {
-  const [location, setLocation] = useState("");
-  const [finalLocation, setFinalLocation] = useState("");
+  // const [location, setLocation] = useState("");
+  // const [finalLocation, setFinalLocation] = useState("");
+  // const [restaruantsData, setRestaruantsData] = useState("");
 
-  const restaruantData = useSearchRestaruants(finalLocation);
-  restaruantData !== null ? console.log(restaruantData) : "";
+  // // setRestaruantsData();
+  // const resData = useSearchRestaruants(finalLocation);
 
-  const handleInputValue = (e) => {
-    setLocation(e.target.value);
-  };
+  // const handleInputValue = (e) => {
+  //   setLocation(e.target.value);
+  // };
 
-  const getLocation = () => {
-    setFinalLocation(location);
-  };
+  // const getLocation = () => {
+  //   setFinalLocation(location);
+  // };
 
   return (
     <>
       <Header />
-      <HeroSection
-        handleLocation={getLocation}
-        value={location}
-        handleInput={handleInputValue}
-      />
+      <Body />
     </>
   );
 };
