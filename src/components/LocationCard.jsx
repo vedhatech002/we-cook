@@ -2,7 +2,7 @@ import { useContext } from "react";
 import appContext from "../utils/appContext";
 
 const LocationCard = (props) => {
-  console.log(props.locationData);
+  // console.log(props.locationData);
   const { structured_formatting, place_id } = props.locationData;
 
   const { setIsLocModalOpen, setLocationData } = useContext(appContext);
@@ -16,7 +16,7 @@ const LocationCard = (props) => {
     );
 
     const jsonData = await res.json();
-    console.log(jsonData.data);
+    // console.log(jsonData.data);
     setLocationData(jsonData.data);
   };
 

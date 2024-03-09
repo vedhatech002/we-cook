@@ -1,51 +1,65 @@
 import HeroSection from "./HeroSection";
-import { useState, useEffect } from "react";
-import useSearchRestaruants from "../utils/useSearchRestaruants";
+import { useState, useEffect, useContext } from "react";
+
 import RestaruantCard from "./RestaruantCard";
+import appContext from "../utils/appContext";
 
 const Body = () => {
-  const [location, setLocation] = useState("");
-  const [finalLocation, setFinalLocation] = useState("");
+  const { locationDetails, homePageData, setHomeResData } =
+    useContext(appContext);
 
-  // setRestaruantsData();
-  const resData = useSearchRestaruants(finalLocation);
+  useEffect(() => {
+    if (locationDetails !== null) {
+      getResData();
+    }
+  }, [locationDetails]);
 
-  const handleInputValue = (e) => {
-    setLocation(e.target.value);
+  const getResData = async () => {
+    try {
+      const res = await fetch(
+        `https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D${locationDetails[0]?.geometry?.location?.lat}%26lng%3D${locationDetails[0]?.geometry?.location?.lng}`
+      );
+
+      const jsonData = await res.json();
+
+      setHomeResData(jsonData?.data);
+      console.log(jsonData);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  const getLocation = () => {
-    setFinalLocation(location);
-  };
   const restroDatas =
-    resData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+    homePageData?.cards[1]?.card?.card?.gridElements?.infoWithStyle
       ?.restaurants;
-  return (
+
+  const TopResData = homePageData?.cards.filter(
+    (obj) => obj?.card?.card?.id === "top_brands_for_you"
+  );
+  const whatsOnyourMindData = homePageData?.cards.filter(
+    (obj) => obj?.card?.card?.id === "whats_on_your_mind"
+  );
+  console.log(TopResData);
+  console.log(whatsOnyourMindData);
+  return locationDetails !== null ? (
     <>
-      {restroDatas ? (
-        <div></div>
-      ) : (
-        <HeroSection
-          handleLocation={getLocation}
-          value={location}
-          handleInput={handleInputValue}
-        />
-      )}
-      {restroDatas ? (
+      {homePageData !== null ? (
         <div className=" px-36 py-32">
           <h1 className="text-2xl font-semibold py-6 font-poppins">
-            {resData?.data?.cards[1]?.card?.card?.header?.title}
+            {homePageData?.cards[1]?.card?.card?.header?.title}
           </h1>
-          <div className=" snap-mandatory snap-x overflow-x-auto flex gap-6 mt-3">
+          <div className=" snap-mandatory snap-x overflow-x-auto flex gap-6 mt-2">
             {restroDatas?.map((res) => (
               <RestaruantCard key={res.info?.id} resData={res} />
             ))}
           </div>
         </div>
       ) : (
-        <div className="hidden"></div>
+        <div>Loading....</div>
       )}
     </>
+  ) : (
+    <HeroSection />
   );
 };
 

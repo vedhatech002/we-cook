@@ -9,8 +9,8 @@ import appContext from "./src/utils/appContext";
 
 const AppLayout = () => {
   const [isLocModalOpen, setIsLocModalOpen] = useState(false);
-
   const [locationData, setLocationData] = useState(null);
+  const [homeResData, setHomeResData] = useState(null);
 
   return (
     <>
@@ -20,6 +20,8 @@ const AppLayout = () => {
           setIsLocModalOpen,
           locationDetails: locationData,
           setLocationData,
+          homePageData: homeResData,
+          setHomeResData,
         }}
       >
         <SearchLocation />

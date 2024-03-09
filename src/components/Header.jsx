@@ -1,16 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import useIsScrolled from "../utils/useIsScrolled";
+
 import appContext from "../utils/appContext";
 
 const Header = () => {
-  const top = useIsScrolled();
-
   const { locationDetails, setIsLocModalOpen } = useContext(appContext);
 
   return (
     <header
       className={`font-poppins fixed w-full z-10  py-4 flex items-center justify-between xl:px-36 bg-white lg:px-32 md:px-20 sm:px-16 px-12  ${
-        !top && "shadow-xl"
+        locationDetails !== null ? "shadow-lg" : ""
       }`}
     >
       <div className="logo flex items-center gap-2">
