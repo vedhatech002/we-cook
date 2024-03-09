@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import useIsScrolled from "../utils/useIsScrolled";
+import appContext from "../utils/appContext";
 
-const Header = (props) => {
-  const { handleLocation, value, handleInput } = props;
-
+const Header = () => {
   const top = useIsScrolled();
+
+  const { locationDetails, setIsLocModalOpen } = useContext(appContext);
+
   return (
     <header
       className={`font-poppins fixed w-full z-10  py-4 flex items-center justify-between xl:px-36 bg-white lg:px-32 md:px-20 sm:px-16 px-12  ${
@@ -46,37 +48,42 @@ const Header = (props) => {
         <h4 className="text-xl font-extrabold">WeCook</h4>
       </div>
       <div className=" flex items-center justify-between gap-3">
-        {/* <div className=" relative md:block hidden">
-          <input
-            type="text"
-            name="search"
-            id="search"
-            value={value}
-            className="border-[1.5px] border-zinc-500  rounded-lg outline-none text-zinc-500  pl-4 pr-8 py-1 text-sm w-[20rem] "
-            placeholder="Enter your location you looking "
-            onChange={handleInput}
-          />
-
-          <span
-            className="absolute top-[6px] right-3 cursor-pointer"
-            onClick={handleLocation}
+        {locationDetails !== null ? (
+          <div
+            className="flex items-center gap-1 mr-6 cursor-pointer"
+            onClick={() => {
+              setIsLocModalOpen(true);
+            }}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="18"
-              height="18"
-              fill="none"
-              viewBox="0 0 21 21"
-            >
-              <path
-                stroke="gray"
-                strokeLinecap="round"
-                strokeWidth="2"
-                d="M1 20l4.486-4.494M3 9.5a8.5 8.5 0 1017 0 8.5 8.5 0 00-17 0v0z"
-              ></path>
-            </svg>
-          </span>
-        </div> */}
+            <span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 64 64"
+                width="24"
+                height="26"
+              >
+                <path
+                  fill="#fdbf8b"
+                  d="M54.01 58.74C54.01 61.65 44.15 64 32 64c-12.15 0-22.01-2.35-22.01-5.26 0-2.6 7.9-4.74 18.26-5.18h7.5c10.37.44 18.26 2.58 18.26 5.18z"
+                  className="colore3e2e1 svgShape"
+                ></path>
+                <path
+                  fill="#e87d23"
+                  d="M32 0C20.7 0 11.54 9.15 11.54 20.45 11.54 31.75 32 58.74 32 58.74s20.45-26.99 20.45-38.29S43.3 0 32 0zm0 33.99c-7.48 0-13.54-6.06-13.54-13.54S24.52 6.91 32 6.91c7.48 0 13.54 6.06 13.54 13.54S39.48 33.99 32 33.99z"
+                  className="colore82327 svgShape"
+                ></path>
+              </svg>
+            </span>
+            <span className="font-semibold text-sm text-orange-500 underline underline-offset-[6px]">
+              {locationDetails[0]?.address_components[1]?.short_name},
+            </span>
+            <span className="text-[0.85rem] pl-0.5 font-medium text-gray-600">
+              {locationDetails[0]?.address_components[2]?.short_name}
+            </span>
+          </div>
+        ) : (
+          ""
+        )}
 
         <div className="cursor-pointer">
           <span>

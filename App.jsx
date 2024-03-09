@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./src/main.css";
@@ -10,10 +10,17 @@ import appContext from "./src/utils/appContext";
 const AppLayout = () => {
   const [isLocModalOpen, setIsLocModalOpen] = useState(false);
 
+  const [locationData, setLocationData] = useState(null);
+
   return (
     <>
       <appContext.Provider
-        value={{ islocationModalOpen: isLocModalOpen, setIsLocModalOpen }}
+        value={{
+          islocationModalOpen: isLocModalOpen,
+          setIsLocModalOpen,
+          locationDetails: locationData,
+          setLocationData,
+        }}
       >
         <SearchLocation />
         <Header />
@@ -29,10 +36,6 @@ const appRouter = createBrowserRouter([
     element: <AppLayout />,
   },
 ]);
-
-// ReactDOM.createRoot(document.getElementById("root")).render(
-//   <RouterProvider router={appRouter} />
-// );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

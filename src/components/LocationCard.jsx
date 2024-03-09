@@ -1,12 +1,32 @@
+import { useContext } from "react";
+import appContext from "../utils/appContext";
+
 const LocationCard = (props) => {
   console.log(props.locationData);
-  const { terms } = props.locationData;
+  const { structured_formatting, place_id } = props.locationData;
 
-  const filteredAdr = terms.filter((el, index) => index !== 0);
-  const locationStr = filteredAdr.map((el) => el.value).join(",");
+  const { setIsLocModalOpen, setLocationData } = useContext(appContext);
+
+  const getLocation = async (placeId) => {
+    // close modal
+    setIsLocModalOpen(false);
+
+    const res = await fetch(
+      `https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmisc%2Faddress-recommend%3Fplace_id%3D${placeId}`
+    );
+
+    const jsonData = await res.json();
+    console.log(jsonData.data);
+    setLocationData(jsonData.data);
+  };
 
   return (
-    <div className="flex items-start gap-6 border-b w-full border-slate-950  py-4 cursor-pointer ">
+    <div
+      className="flex items-start gap-6 border-b w-full border-slate-950  py-4 cursor-pointer "
+      onClick={() => {
+        getLocation(place_id);
+      }}
+    >
       <div className="text-gray-400">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -28,9 +48,11 @@ const LocationCard = (props) => {
       </div>
       <div className="space-y-3">
         <h3 className="text-sm font-semibold text-slate-950 hover:text-orange-500">
-          {terms[0]?.value}
+          {structured_formatting?.main_text}
         </h3>
-        <p className="text-gray-400 text-xs mt-1">{locationStr}</p>
+        <p className="text-gray-400 text-xs mt-1">
+          {structured_formatting?.secondary_text}
+        </p>
       </div>
     </div>
   );

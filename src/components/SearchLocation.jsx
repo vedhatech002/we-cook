@@ -6,7 +6,7 @@ const SearchLocation = () => {
   const { islocationModalOpen, setIsLocModalOpen } = useContext(appContext);
   const [locations, setLocations] = useState(null);
 
-  const getLocation = (e) => {
+  const getLocations = (e) => {
     const value = e.target.value;
     if (value.length >= 3) {
       const getData = async () => {
@@ -79,7 +79,7 @@ const SearchLocation = () => {
           type="text"
           placeholder="Search for area,street name..."
           className="border-[1.8px] border-gray-400 px-4 py-2 w-full rounded-lg outline-none focus:border-[#fdbf8b] placeholder:text-gray-600"
-          onChange={getLocation}
+          onChange={getLocations}
         />
         {/* result location */}
         <div className="my-4 mx-2 overflow-y-auto h-[68vh] noScroll">
