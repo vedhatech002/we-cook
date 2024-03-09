@@ -46,7 +46,7 @@ const Header = (props) => {
         <h4 className="text-xl font-extrabold">WeCook</h4>
       </div>
       <div className=" flex items-center justify-between gap-3">
-        <div className=" relative md:block hidden">
+        {/* <div className=" relative md:block hidden">
           <input
             type="text"
             name="search"
@@ -76,9 +76,9 @@ const Header = (props) => {
               ></path>
             </svg>
           </span>
-        </div>
+        </div> */}
 
-        <div>
+        <div className="cursor-pointer">
           <span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

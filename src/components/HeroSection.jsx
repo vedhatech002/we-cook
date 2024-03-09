@@ -1,8 +1,15 @@
+import { useContext } from "react";
 import image from "../assets/Rectangle.png";
 import heroBanner from "../assets/hero-bg.png";
 import Button from "./Button";
+import appContext from "../utils/appContext";
 const HeroSection = (props) => {
-  const { handleLocation, value, handleInput } = props;
+  // const { handleLocation, value, handleInput } = props;
+  const { setIsLocModalOpen } = useContext(appContext);
+
+  const openSearchModal = () => {
+    setIsLocModalOpen(true);
+  };
   return (
     <section className=" 2xl:py-56 xl:py-36 lg:py-36 md:py-36 py-36 font-poppins">
       <div className="w-full relative ">
@@ -32,12 +39,12 @@ const HeroSection = (props) => {
               type="text"
               name="search-location"
               id="search-location"
-              value={value}
               className="border-[1.5px] border-zinc-500  rounded-lg outline-none text-zinc-500  px-4 py-1 text-sm w-[20rem] "
               placeholder="Enter your location you looking  "
-              onChange={handleInput}
+              // onChange={handleInput}
+              onFocus={openSearchModal}
             />
-            <Button btnName="Submit" handleClick={handleLocation} />
+            <Button btnName="Get Started" handleClick={openSearchModal} />
           </div>
         </div>
         <div className="ml-8 md:block hidden">

@@ -1,11 +1,13 @@
 {
-  "name": "we-cook",
-  "version": "1.0.0",
-  "description": "a simple food delivery like application using swiggy api ",
+  "name": "we-cook-vite",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "start": "parcel ./index.html",
-    "build": "parcel build ./index.html",
-    "test": "jest"
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
   "repository": {
     "type": "git",
@@ -19,17 +21,23 @@
   "bugs": {
     "url": "https://github.com/vedhatech002/we-cook/issues"
   },
-  "homepage": "https://github.com/vedhatech002/we-cook#readme",
   "dependencies": {
-    "parcel": "^2.11.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router": "^6.22.0",
-    "react-router-dom": "^6.22.0"
+    "react-router": "^6.22.3",
+    "react-router-dom": "^6.22.3"
   },
   "devDependencies": {
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.18",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "postcss": "^8.4.35",
-    "process": "^0.11.10",
-    "tailwindcss": "^3.4.1"
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.4"
   }
 }
