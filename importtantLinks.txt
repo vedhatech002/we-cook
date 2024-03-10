@@ -4,3 +4,5 @@ with place id  = https://www.swiggy.com/dapi/misc/address-recommend?place_id=ChI
 
 
 with lat and lang get data = https://www.swiggy.com/dapi/restaurants/list/v5?lat=13.0827989&lng=80.2754246&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING
+
+
