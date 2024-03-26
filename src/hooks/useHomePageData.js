@@ -1,4 +1,8 @@
-import { addTopRestaruants } from "@/redux/homePageSlice";
+import {
+  addCuisines,
+  addRestaurants,
+  addTopRestaruants,
+} from "@/redux/homePageSlice";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -17,6 +21,18 @@ const useHomePageData = () => {
       const jsonData = await res.json();
       console.log(jsonData);
 
+      const cuisines = jsonData.data?.cards.find(
+        (obj) => obj?.card?.card?.id === "whats_on_your_mind"
+      );
+      if (cuisines) {
+        dispatch(
+          addCuisines({
+            title: cuisines.card?.card?.header?.title,
+            cuisines: cuisines.card?.card?.gridElements?.infoWithStyle?.info,
+          })
+        );
+      }
+
       const topResData = jsonData.data?.cards.find(
         (obj) => obj?.card?.card?.id === "top_brands_for_you"
       );
@@ -30,7 +46,23 @@ const useHomePageData = () => {
           })
         );
       }
-      console.log(topResData);
+      const restaruants = jsonData.data?.cards.find(
+        (obj) => obj?.card?.card?.id === "restaurant_grid_listing"
+      );
+      const restaruantsTitle = jsonData.data?.cards.find(
+        (obj) => obj?.card?.card?.id === "popular_restaurants_title"
+      );
+
+      if (restaruants && restaruantsTitle) {
+        console.log("res", restaruants);
+        dispatch(
+          addRestaurants({
+            title: restaruantsTitle.card?.card?.title,
+            resData:
+              restaruants.card?.card?.gridElements?.infoWithStyle?.restaurants,
+          })
+        );
+      }
     } catch (error) {
       console.log(error);
     }

@@ -1,4 +1,4 @@
-import TopRestaruantCard from "./TopRestaruantCard";
+import React from "react";
 
 import {
   Carousel,
@@ -7,16 +7,16 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "./ui/carousel";
+import { CUISINE_IMG_URL } from "@/utils/constant";
 
-const TopRestaruants = ({ topRes }) => {
-  if (!topRes) return;
-
+const CuisinesCarsouel = ({ cuisinesData }) => {
+  if (!cuisinesData) return;
   return (
-    <section className="mt-8  pb-16 border-b">
+    <section className="pb-10 border-b mb-16">
       <Carousel className="w-full ">
         <div className="flex w-full items-start justify-between pb-2">
           <h2 className="md:text-2xl text-xl font-semibold font-poppins ">
-            {topRes?.title}
+            {cuisinesData?.title}
           </h2>
           <div className="mt-2 space-x-3 w-1/12 hidden sm:block ">
             <CarouselPrevious className="mt-2 " />
@@ -24,13 +24,14 @@ const TopRestaruants = ({ topRes }) => {
           </div>
         </div>
         <CarouselContent className="-ml-2">
-          {topRes?.resData.map((res) => (
-            <CarouselItem
-              key={res.info?.id}
-              className="pl-2 sm:basis-[90%] md:basis-2/3 lg:basis-2/4 xl:basis-1/3 "
-            >
+          {cuisinesData?.cuisines.map((cuisine) => (
+            <CarouselItem key={cuisine.id} className="pl-2 basis-1/5 ">
               <div className="p-1">
-                <TopRestaruantCard resData={res} />
+                <img
+                  className="w-[150px]"
+                  alt={cuisine?.action?.text}
+                  src={CUISINE_IMG_URL + cuisine?.imageId}
+                />
               </div>
             </CarouselItem>
           ))}
@@ -40,4 +41,4 @@ const TopRestaruants = ({ topRes }) => {
   );
 };
 
-export default TopRestaruants;
+export default CuisinesCarsouel;
