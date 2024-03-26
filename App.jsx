@@ -7,6 +7,7 @@ import Body from "./src/components/Body";
 import SearchLocation from "./src/components/SearchLocation";
 import { Provider } from "react-redux";
 import appStore from "@/redux/appStore";
+import Footer from "@/components/Footer";
 
 const AppLayout = () => {
   return (
@@ -15,6 +16,7 @@ const AppLayout = () => {
         <SearchLocation />
         <Header />
         <Body />
+        <Footer />
       </Provider>
     </main>
   );

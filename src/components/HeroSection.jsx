@@ -10,7 +10,7 @@ const HeroSection = (props) => {
     dispatch(toggleLocationModal());
   };
   return (
-    <section className=" 2xl:py-56 xl:py-36 lg:py-36 md:py-36 py-36 font-poppins ">
+    <section className=" 2xl:py-56 xl:py-36 lg:py-36 md:py-36 py-36 font-poppins mb-20 ">
       <div className="w-full relative ">
         <img className="w-full sm:block hidden  " src={heroBanner} />
       </div>

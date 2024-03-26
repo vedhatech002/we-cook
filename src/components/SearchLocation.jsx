@@ -28,9 +28,9 @@ const SearchLocation = () => {
   return islocationModalOpen !== true ? (
     ""
   ) : (
-    <section className=" grid grid-cols-[2fr,1fr] h-screen absolute z-30 w-screen font-Inter ">
+    <section className=" grid grid-cols-[2fr,1fr] h-screen fixed z-30 w-screen font-Inter ">
       <div
-        className="bg-[#1a1a1be6] h-screen"
+        className="bg-[#1a1a1be6] h-full"
         onClick={() => {
           dispatch(toggleLocationModal());
         }}
