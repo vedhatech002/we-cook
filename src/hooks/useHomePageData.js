@@ -53,13 +53,22 @@ const useHomePageData = () => {
         (obj) => obj?.card?.card?.id === "popular_restaurants_title"
       );
 
+      const restaruantsData = [
+        ...restaruants.card?.card?.gridElements?.infoWithStyle?.restaurants,
+        ...topResData.card?.card?.gridElements?.infoWithStyle?.restaurants,
+      ];
+      const uniqueResData = restaruantsData.filter(
+        (obj, index) =>
+          restaruantsData.findIndex(
+            (item) => item.info?.id === obj.info?.id
+          ) === index
+      );
       if (restaruants && restaruantsTitle) {
         console.log("res", restaruants);
         dispatch(
           addRestaurants({
             title: restaruantsTitle.card?.card?.title,
-            resData:
-              restaruants.card?.card?.gridElements?.infoWithStyle?.restaurants,
+            resData: uniqueResData,
           })
         );
       }

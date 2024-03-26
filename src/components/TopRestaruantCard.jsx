@@ -18,7 +18,7 @@ const TopRestaruantCard = (props) => {
           </h2>
         )}
       </div>
-      <div className="mt-1 space-y-1 ml-1">
+      <div className="mt-2 space-y-1 ml-1">
         <h3 className="text-[1rem]  font-semibold">
           {resData.info?.name.length < 30
             ? resData.info?.name
@@ -40,7 +40,7 @@ const TopRestaruantCard = (props) => {
               opacity="0.75"
             ></path>
           </svg>
-          <p className="text-sm font-semibold">
+          <p className="text-sm font-semibold mt-1">
             {resData.info?.avgRating +
               " • " +
               resData.info?.sla?.deliveryTime +
