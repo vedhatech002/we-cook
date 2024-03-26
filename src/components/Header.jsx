@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-
-import appContext from "../utils/appContext";
+import { toggleLocationModal } from "@/redux/locationSlice";
+import { useSelector, useDispatch } from "react-redux";
 
 const Header = () => {
-  const { locationDetails, setIsLocModalOpen } = useContext(appContext);
+  const locationDetails = useSelector(
+    (store) => store.location.locationDetails
+  );
+  const dispatch = useDispatch();
 
   return (
     <header
@@ -50,7 +52,7 @@ const Header = () => {
           <div
             className="flex items-center gap-1 mr-6 cursor-pointer"
             onClick={() => {
-              setIsLocModalOpen(true);
+              dispatch(toggleLocationModal());
             }}
           >
             <span>

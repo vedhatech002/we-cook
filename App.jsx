@@ -1,34 +1,22 @@
-import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom/client";
+import React from "react";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./src/main.css";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
 import SearchLocation from "./src/components/SearchLocation";
-import appContext from "./src/utils/appContext";
+import { Provider } from "react-redux";
+import appStore from "@/redux/appStore";
 
 const AppLayout = () => {
-  const [isLocModalOpen, setIsLocModalOpen] = useState(false);
-  const [locationData, setLocationData] = useState(null);
-  const [homeResData, setHomeResData] = useState(null);
-
   return (
-    <>
-      <appContext.Provider
-        value={{
-          islocationModalOpen: isLocModalOpen,
-          setIsLocModalOpen,
-          locationDetails: locationData,
-          setLocationData,
-          homePageData: homeResData,
-          setHomeResData,
-        }}
-      >
+    <main>
+      <Provider store={appStore}>
         <SearchLocation />
         <Header />
         <Body />
-      </appContext.Provider>
-    </>
+      </Provider>
+    </main>
   );
 };
 

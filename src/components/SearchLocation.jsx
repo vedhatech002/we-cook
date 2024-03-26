@@ -1,20 +1,24 @@
-import { useContext, useState } from "react";
-import appContext from "../utils/appContext";
+import { useState } from "react";
 import LocationCard from "./LocationCard";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleLocationModal } from "@/redux/locationSlice";
 
 const SearchLocation = () => {
-  const { islocationModalOpen, setIsLocModalOpen } = useContext(appContext);
   const [locations, setLocations] = useState(null);
+  const islocationModalOpen = useSelector(
+    (store) => store.location.islocationModalOpen
+  );
+  const dispatch = useDispatch();
 
   const getLocations = (e) => {
     const value = e.target.value;
     if (value.length >= 3) {
       const getData = async () => {
         const res = await fetch(
-          `https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmisc%2Fplace-autocomplete%3Finput%3D${value}`
+          `https://www.swiggy.com/dapi/misc/place-autocomplete?input=${value}`
         );
         const jsonData = await res.json();
-        // console.log(jsonData.data);
+        console.log(jsonData.data);
         setLocations(jsonData.data);
       };
       getData();
@@ -28,7 +32,7 @@ const SearchLocation = () => {
       <div
         className="bg-[#1a1a1be6] h-screen"
         onClick={() => {
-          setIsLocModalOpen(false);
+          dispatch(toggleLocationModal());
         }}
       ></div>
       <div className="bg-white shadow-2xl px-8 py-4">
@@ -58,7 +62,7 @@ const SearchLocation = () => {
           <div
             className="cursor-pointer"
             onClick={() => {
-              setIsLocModalOpen(false);
+              dispatch(toggleLocationModal());
             }}
           >
             <svg
@@ -83,11 +87,10 @@ const SearchLocation = () => {
         />
         {/* result location */}
         <div className="my-4 mx-2 overflow-y-auto h-[68vh] noScroll">
-          {locations !== null
-            ? locations.map((location, index) => (
-                <LocationCard key={index} locationData={location} />
-              ))
-            : ""}
+          {locations &&
+            locations.map((location, index) => (
+              <LocationCard key={index} locationData={location} />
+            ))}
         </div>
       </div>
     </section>

@@ -1,16 +1,29 @@
-const RestaruantCard = (props) => {
+const TopRestaruantCard = (props) => {
   const { resData } = props;
   //   const {resName, cuisine, avgRating } = resData;
   //   const { deliveryTime } = resData?.sla;\
   const { cuisines } = resData?.info;
   return (
-    <div className="min-w-[300px]  font-poppins snap-center">
+    <div className="min-w-[300px]  font-poppins snap-center relative">
       <img
         src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${resData?.info?.cloudinaryImageId}`}
         className="w-full h-48 rounded-md object-cover backdrop-blur-sm"
       />
+      <div className="absolute top-[8.7rem] w-full text-lg font-poppins bg-gradient-to-t  from-black h-14 py-6  font-bold text-white px-4 rounded-b-md">
+        {resData.info?.aggregatedDiscountInfoV3?.header && (
+          <h2>
+            {resData.info?.aggregatedDiscountInfoV3?.header +
+              " " +
+              resData.info?.aggregatedDiscountInfoV3?.subHeader}
+          </h2>
+        )}
+      </div>
       <div className="mt-1 space-y-1 ml-1">
-        <h3 className="text-lg  font-semibold">{resData.info?.name}</h3>
+        <h3 className="text-[1rem]  font-semibold">
+          {resData.info?.name.length < 30
+            ? resData.info?.name
+            : resData.info?.name.substr(0, 28) + "..."}
+        </h3>
 
         <span className="flex items-center gap-1">
           <svg
@@ -38,9 +51,9 @@ const RestaruantCard = (props) => {
         <h4 className="text-sm mt-1 font-medium text-gray-500">
           {cuisines.length < 4
             ? cuisines.join(",")
-            : (cuisines[0], cuisines[1], cuisines[2], cuisines[3] + "....")}
+            : (cuisines[0], cuisines[1], cuisines[2], cuisines[3])}
         </h4>
-        <span className="flex items-center gap-1">
+        {/* <span className="flex items-center gap-1">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -55,9 +68,9 @@ const RestaruantCard = (props) => {
             ></path>
           </svg>
           <p className="font-medium "> {resData.info?.costForTwo}</p>
-        </span>
+        </span> */}
       </div>
     </div>
   );
 };
-export default RestaruantCard;
+export default TopRestaruantCard;

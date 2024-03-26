@@ -1,23 +1,24 @@
-import { useContext } from "react";
-import appContext from "../utils/appContext";
+import { useDispatch } from "react-redux";
+import { addLocationDetails, toggleLocationModal } from "@/redux/locationSlice";
 
 const LocationCard = (props) => {
   // console.log(props.locationData);
   const { structured_formatting, place_id } = props.locationData;
 
-  const { setIsLocModalOpen, setLocationData } = useContext(appContext);
+  const dispatch = useDispatch();
 
   const getLocation = async (placeId) => {
     // close modal
-    setIsLocModalOpen(false);
+    dispatch(toggleLocationModal());
 
     const res = await fetch(
-      `https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmisc%2Faddress-recommend%3Fplace_id%3D${placeId}`
+      `https://www.swiggy.com/dapi/misc/address-recommend?place_id=${placeId}`
     );
 
     const jsonData = await res.json();
     // console.log(jsonData.data);
-    setLocationData(jsonData.data);
+
+    dispatch(addLocationDetails(jsonData.data));
   };
 
   return (
