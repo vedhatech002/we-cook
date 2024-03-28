@@ -19,7 +19,7 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins: '"Poppins",sans-serif',
-        Inter: ":Inter,sans-serif",
+        Inter: '"Inter",sans-serif',
       },
 
       keyframes: {

@@ -1,6 +1,6 @@
 import ReactDOM from "react-dom/client";
 import React from "react";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { Outlet, RouterProvider, createBrowserRouter } from "react-router-dom";
 import "./src/main.css";
 import Header from "./src/components/Header";
 import Body from "./src/components/Body";
@@ -8,6 +8,8 @@ import SearchLocation from "./src/components/SearchLocation";
 import { Provider } from "react-redux";
 import appStore from "@/redux/appStore";
 import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import RestaruantMenu from "@/components/RestaruantMenu";
 
 const AppLayout = () => {
   return (
@@ -15,7 +17,7 @@ const AppLayout = () => {
       <Provider store={appStore}>
         <SearchLocation />
         <Header />
-        <Body />
+        <Outlet />
         <Footer />
       </Provider>
     </main>
@@ -26,6 +28,16 @@ const appRouter = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/restaurant/:resId",
+        element: <RestaruantMenu />,
+      },
+    ],
   },
 ]);
 

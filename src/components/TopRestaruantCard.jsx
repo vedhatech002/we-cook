@@ -1,10 +1,15 @@
+import { Link } from "react-router-dom";
+
 const TopRestaruantCard = (props) => {
   const { resData } = props;
   //   const {resName, cuisine, avgRating } = resData;
   //   const { deliveryTime } = resData?.sla;\
   const { cuisines } = resData?.info;
   return (
-    <div className="min-w-[300px]  font-poppins snap-center relative">
+    <Link
+      to={`/restaurant/${resData.info?.id}`}
+      className="min-w-[300px]  font-poppins snap-center relative"
+    >
       <img
         src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${resData?.info?.cloudinaryImageId}`}
         className="w-full h-48 rounded-md object-cover backdrop-blur-sm"
@@ -70,7 +75,7 @@ const TopRestaruantCard = (props) => {
           <p className="font-medium "> {resData.info?.costForTwo}</p>
         </span> */}
       </div>
-    </div>
+    </Link>
   );
 };
 export default TopRestaruantCard;

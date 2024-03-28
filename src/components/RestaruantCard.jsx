@@ -2,7 +2,6 @@ import { RES_IMG_URL } from "@/utils/constant";
 
 const RestaruantCard = (props) => {
   const { resData } = props;
-  const { cuisines } = resData?.info;
 
   return (
     <div className="bg-[#F8F8F8] w-[230px] p-3 rounded-lg  drop-shadow-md cursor-pointer font-poppins relative">
@@ -29,9 +28,11 @@ const RestaruantCard = (props) => {
         </h4>
         <div className="flex items-center justify-between my-3">
           <span className="text-xs font-medium text-gray-500">
-            {cuisines.length < 4
-              ? cuisines.join(" , ")
-              : (cuisines[0], cuisines[1], cuisines[2], cuisines[3])}
+            {resData?.info?.cuisines.length < 4
+              ? resData?.info?.cuisines.join(" , ")
+              : (resData?.info?.cuisines[0],
+                resData?.info?.cuisines[1],
+                resData?.info?.cuisines[2])}
           </span>
           <span className="flex items-center gap-1">
             <svg

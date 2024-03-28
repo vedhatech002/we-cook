@@ -1,3 +1,4 @@
+import { addFilteredRes } from "@/redux/filteredResSlice";
 import {
   addCuisines,
   addRestaurants,
@@ -71,6 +72,7 @@ const useHomePageData = () => {
             resData: uniqueResData,
           })
         );
+        dispatch(addFilteredRes(uniqueResData));
       }
     } catch (error) {
       console.log(error);
