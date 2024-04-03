@@ -10,6 +10,7 @@ import appStore from "@/redux/appStore";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import RestaruantMenu from "@/components/RestaruantMenu";
+import Searchpage from "@/components/Searchpage";
 
 const AppLayout = () => {
   return (
@@ -36,6 +37,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restaurant/:resId",
         element: <RestaruantMenu />,
+      },
+      {
+        path: "search",
+        element: <Searchpage />,
       },
     ],
   },

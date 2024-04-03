@@ -95,7 +95,9 @@ const RestaruantCard = (props) => {
                 opacity="0.75"
               ></path>
             </svg>
-            <p className="text-xs font-medium mt-0.5">250 for two</p>
+            <p className="text-xs font-medium mt-0.5">
+              {resData.info?.costForTwo}
+            </p>
           </span>
         </div>
       </div>
