@@ -48,7 +48,13 @@ const MenuItem = (props) => {
 
       if (checkValid === "valid") {
         dispatch(addCurrentRestaurant(restaurantDetails));
-        dispatch(addToCart({ ...props.data?.card?.info, quantitiy: 1 }));
+        dispatch(
+          addToCart({
+            ...props.data?.card?.info,
+            quantity: 1,
+            cost: props.data?.card?.info?.price,
+          })
+        );
       } else {
         toast.custom((t) => (
           <div className="bg-white drop-shadow-md rounded-md p-6 font-poppins max-w-lg space-y-4">
@@ -67,7 +73,13 @@ const MenuItem = (props) => {
       }
     } else {
       dispatch(addCurrentRestaurant(restaurantDetails));
-      dispatch(addToCart({ ...props.data?.card?.info, quantitiy: 1 }));
+      dispatch(
+        addToCart({
+          ...props.data?.card?.info,
+          quantity: 1,
+          cost: props.data?.card?.info?.price,
+        })
+      );
     }
   };
 
