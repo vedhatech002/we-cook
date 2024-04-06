@@ -8,9 +8,11 @@ import SearchLocation from "./src/components/SearchLocation";
 import { Provider } from "react-redux";
 import appStore from "@/redux/appStore";
 import Footer from "@/components/Footer";
-import HeroSection from "@/components/HeroSection";
 import RestaruantMenu from "@/components/RestaruantMenu";
 import Searchpage from "@/components/Searchpage";
+
+import HeroSection from "@/components/HeroSection";
+import CartPage from "@/components/CartPage";
 
 const AppLayout = () => {
   return (
@@ -41,6 +43,14 @@ const appRouter = createBrowserRouter([
       {
         path: "search",
         element: <Searchpage />,
+      },
+      {
+        path: "/getStarted",
+        element: <HeroSection />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
       },
     ],
   },

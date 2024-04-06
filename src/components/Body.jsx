@@ -5,8 +5,10 @@ import Restaruants from "./Restaruants";
 import TopRestaruants from "./TopRestaruants";
 import useHomePageData from "@/hooks/useHomePageData";
 import { useDispatch, useSelector } from "react-redux";
+import isNavigateToGetStarted from "@/hooks/isNavigateToGetStarted";
 
 const Body = () => {
+  isNavigateToGetStarted();
   useHomePageData();
   const dispatch = useDispatch();
   const location = useSelector((store) => store.location.locationDetails);
@@ -15,7 +17,7 @@ const Body = () => {
   const restaurantsData = useSelector((store) => store.homePage.restaurants);
   const filteredRes = useSelector((store) => store.filteredRes.filteredRes);
 
-  return location !== null ? (
+  return (
     <>
       <div className=" xl:px-36 lg:px-32 md:px-22 sm:px-16 px-6 pt-32">
         <CuisinesCarsouel cuisinesData={cuisinesData} />
@@ -26,8 +28,6 @@ const Body = () => {
         />
       </div>
     </>
-  ) : (
-    <HeroSection />
   );
 };
 

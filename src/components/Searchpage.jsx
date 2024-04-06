@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import SuggestionCard from "./SuggestionCard";
 import { triggerResult, triggerSuggestion } from "@/redux/searchResultSlice";
 import SearchResults from "./SearchResults";
+import isNavigateToGetStarted from "@/hooks/isNavigateToGetStarted";
 
 const Searchpage = () => {
+  isNavigateToGetStarted();
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
   const showSuggestion = useSelector(

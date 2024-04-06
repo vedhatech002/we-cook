@@ -3,19 +3,23 @@ import MenuCategory from "./MenuCategory";
 import useRestaruantMenu from "@/hooks/useRestaruantMenu";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import CartNotification from "./CartNotification";
 
 const RestaruantMenu = () => {
   const [showIndex, setShowIndex] = useState(0);
   const { resId } = useParams();
   useRestaruantMenu(resId);
+  // const cartError = useSelector((store) => store.cart.error);
 
   const resDetails = useSelector((store) => store.restaurant.restaurantDetails);
   const resMenus = useSelector((store) => store.restaurant.restaurantMenu);
 
   return resDetails ? (
-    <main className="w-8/12 mx-auto pt-32 font-poppins ">
+    <main className="w-8/12 mx-auto pt-32 font-poppins relative">
+      <CartNotification />
+
       {/* restaruant details */}
-      <section className="py-6">
+      <section className="py-6 relative">
         <h4 className="text-2xl font-bold">{resDetails?.name}</h4>
         <div className="mt-10 bg-gradient-to-b from-white via-gray-200 to-gray-300 p-4 rounded-b-3xl">
           <div className="bg-white p-4 rounded-2xl">
@@ -105,14 +109,6 @@ const RestaruantMenu = () => {
       </section>
       {/* restaruants category */}
       <section className="bg-gray-200 space-y-3 mb-10">
-        {/* {foodCategories.map((category, index) => (
-          <FoodCategory
-            key={category?.card?.card?.title}
-            data={category?.card?.card}
-            showItems={index === showIndex ? true : false}
-            setShowIndex={() => setShowIndex(index)}
-          />
-        ))} */}
         {resMenus.map((category, index) => (
           <MenuCategory
             key={category?.card?.card?.title}

@@ -1,6 +1,11 @@
+import { Link } from "react-router-dom";
+
 const ResResultCard = ({ data }) => {
   return (
-    <div className="bg-white font-poppins px-4 py-6 rounded-xl shadow flex items-center gap-6">
+    <Link
+      to={`/restaurant/${data.restaurant?.info?.id}`}
+      className="bg-white font-poppins px-4 py-6 rounded-xl shadow flex items-center gap-6"
+    >
       <div>
         <img
           className="w-24 h-20 rounded-md"
@@ -49,7 +54,7 @@ const ResResultCard = ({ data }) => {
               data.restaurant?.info?.cuisines[3])}
         </p>
       </div>
-    </div>
+    </Link>
   );
 };
 

@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import RestaruantCard from "./RestaruantCard";
 import Filters from "./Filters";
 import { Link } from "react-router-dom";
+import CartNotification from "./CartNotification";
 
 const Restaruants = ({ restaurantsData, filteredResData }) => {
   const [page, setPage] = useState(1);

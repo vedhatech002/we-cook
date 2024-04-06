@@ -1,12 +1,13 @@
 import { useDispatch } from "react-redux";
 import { addLocationDetails, toggleLocationModal } from "@/redux/locationSlice";
+import { useNavigate } from "react-router";
 
 const LocationCard = (props) => {
   // console.log(props.locationData);
   const { structured_formatting, place_id } = props.locationData;
 
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const getLocation = async (placeId) => {
     // close modal
     dispatch(toggleLocationModal());
@@ -19,6 +20,7 @@ const LocationCard = (props) => {
     // console.log(jsonData.data);
 
     dispatch(addLocationDetails(jsonData.data));
+    navigate("/");
   };
 
   return (

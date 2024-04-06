@@ -28,7 +28,7 @@ const SearchLocation = () => {
   return islocationModalOpen !== true ? (
     ""
   ) : (
-    <section className=" grid grid-cols-[2fr,1fr] h-screen fixed z-30 w-screen font-Inter ">
+    <section className=" grid grid-cols-[2fr,1fr] h-screen fixed z-50 w-screen font-Inter ">
       <div
         className="bg-[#1a1a1be6] h-full"
         onClick={() => {
@@ -80,9 +80,10 @@ const SearchLocation = () => {
           </div>
         </div>
         <input
+          autoFocus={true}
           type="text"
           placeholder="Search for area,street name..."
-          className="border-[1.8px] border-gray-400 px-4 py-2 w-full rounded-lg outline-none focus:border-[#fdbf8b] placeholder:text-gray-600"
+          className="border-[1.8px] border-gray-400 px-4 py-2 w-full rounded-lg outline-none focus:border-[#fdbf8b] placeholder:text-gray-600 "
           onChange={getLocations}
         />
         {/* result location */}

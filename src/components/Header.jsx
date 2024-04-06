@@ -1,4 +1,5 @@
 import { toggleLocationModal } from "@/redux/locationSlice";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -10,7 +11,7 @@ const Header = () => {
 
   return (
     <header
-      className={`font-poppins fixed w-full z-50  py-4 flex items-center justify-between xl:px-36 bg-white lg:px-32 md:px-20 sm:px-16 px-12  ${
+      className={`font-poppins fixed w-full z-40  py-4 flex items-center justify-between xl:px-36 bg-white lg:px-32 md:px-20 sm:px-16 px-12  ${
         locationDetails !== null ? "shadow-lg" : ""
       }`}
     >
@@ -110,7 +111,10 @@ const Header = () => {
           Search
         </Link>
 
-        <div className="cursor-pointer flex gap-1 items-center text-gray-500 hover:text-orange-500 ">
+        <Link
+          to={"/cart"}
+          className="cursor-pointer flex gap-1 items-center text-gray-500 hover:text-orange-500 "
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 256 256"
@@ -130,7 +134,7 @@ const Header = () => {
             ></path>
           </svg>
           Cart
-        </div>
+        </Link>
 
         <button className="outline-none border-none rounded-lg bg-neutral-800 text-neutral-50 py-1.5 px-4 text-sm font-inter font-semibold cursor-pointer hover:bg-orange-500">
           Sign in
