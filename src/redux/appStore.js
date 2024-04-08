@@ -6,6 +6,7 @@ import restaurantReducer from "./restaurantSlice";
 import searchReducer from "./searchSlice";
 import searchResultReducer from "./searchResultSlice";
 import cartReducer from "./CartSlice";
+import userReducer from "./userSlice";
 
 const appStore = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const appStore = configureStore({
     search: searchReducer,
     searchResult: searchResultReducer,
     cart: cartReducer,
+    user: userReducer,
   },
 });
 

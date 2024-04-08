@@ -3,19 +3,21 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CartItem from "./CartItem";
+import Checkout from "./Checkout";
 
 const CartPage = () => {
   isNavigateToGetStarted();
   useState("false");
   const navigate = useNavigate();
 
-  const { currentRestaurant, items } = useSelector((store) => store.cart);
-  console.log(items);
+  const { currentRestaurant, items, totalCost } = useSelector(
+    (store) => store.cart
+  );
 
   return currentRestaurant ? (
-    <section className="h-screen pt-24 bg-gray-200 w-12/12 flex gap-6 px-8 pb-8">
-      <div className="bg-white w-8/12">checkout</div>
-      <div className="bg-white w-4/12 shadow-md rounded-sm ">
+    <section className="pt-24 bg-gray-200 w-12/12 flex gap-6 px-8 pb-8 font-poppins h-fit">
+      <Checkout />
+      <div className="bg-white w-4/12 shadow-md rounded-sm h-[80vh]">
         {/* restaruant details div */}
         <div className="px-6 py-5 flex gap-4 cursor-pointer border-b ">
           <img
@@ -43,6 +45,14 @@ const CartPage = () => {
           {items.map((item) => (
             <CartItem key={item.id} cartItem={item} />
           ))}
+        </div>
+        {/* total */}
+        <div className="border-t flex items-center justify-between px-6 py-6">
+          <h2 className="font-medium text-gray-600 ">TO Pay</h2>
+          <span className="font-Inter text-sm font-semibild">
+            {" "}
+            ₹{totalCost / 100}
+          </span>
         </div>
       </div>
     </section>

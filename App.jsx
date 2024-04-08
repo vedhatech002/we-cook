@@ -13,11 +13,13 @@ import Searchpage from "@/components/Searchpage";
 
 import HeroSection from "@/components/HeroSection";
 import CartPage from "@/components/CartPage";
+import SigninPage from "@/components/SigninPage";
 
 const AppLayout = () => {
   return (
     <main>
       <Provider store={appStore}>
+        <SigninPage />
         <SearchLocation />
         <Header />
         <Outlet />

@@ -52,7 +52,9 @@ const MenuItem = (props) => {
           addToCart({
             ...props.data?.card?.info,
             quantity: 1,
-            cost: props.data?.card?.info?.price,
+            cost: props.data?.card?.info?.price
+              ? props.data?.card?.info?.price
+              : props.data?.card?.info?.defaultPrice,
           })
         );
       } else {
@@ -77,7 +79,9 @@ const MenuItem = (props) => {
         addToCart({
           ...props.data?.card?.info,
           quantity: 1,
-          cost: props.data?.card?.info?.price,
+          cost: props.data?.card?.info?.price
+            ? props.data?.card?.info?.price
+            : props.data?.card?.info?.defaultPrice,
         })
       );
     }

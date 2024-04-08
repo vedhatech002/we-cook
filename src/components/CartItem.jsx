@@ -1,10 +1,15 @@
-import { increamentQuantity } from "@/redux/CartSlice";
+import {
+  clearCart,
+  decreamentQuantity,
+  increamentQuantity,
+} from "@/redux/CartSlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const CartItem = ({ cartItem }) => {
   const [changes, setChanges] = useState(false);
   const dispatch = useDispatch();
+  const { items } = useSelector((store) => store.cart);
 
   useEffect(() => {}, []);
 
@@ -19,6 +24,10 @@ const CartItem = ({ cartItem }) => {
         <button
           className="px-1 text-gray-400"
           onClick={() => {
+            dispatch(decreamentQuantity(cartItem.id));
+            if (items.length === 1) {
+              dispatch(clearCart());
+            }
             // setQuantity(quantity <= 0 ? 0 : quantity - 1);
           }}
         >
