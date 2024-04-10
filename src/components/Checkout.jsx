@@ -5,6 +5,7 @@ import {
 } from "@/redux/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import PaymentGateway from "./PaymentGateway";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,13 @@ const Checkout = () => {
   const [address, setAddress] = useState("");
 
   return (
-    <div className="w-8/12 font-poppins">
+    <div className="w-8/12 font-poppins flex">
       {/* line step div */}
-      <div></div>
+
+      {/* account */}
+
       {/* chekout info div */}
-      <div className="space-y-6">
+      <div className="space-y-6 w-full">
         {/* account */}
         {!userDetails ? (
           <div className="bg-white px-8 py-6 flex items-center justify-between w-full">
@@ -128,14 +131,16 @@ const Checkout = () => {
               </h2>
               {deliveryAddress && <img className="w-5 " src="/check.png" />}
             </div>
-            <button
-              className="text-green-500 text-sm font-semibold"
-              onClick={() => {
-                dispatch(addDeliveryAddress(null));
-              }}
-            >
-              change
-            </button>
+            {deliveryAddress && (
+              <button
+                className="text-green-500 text-sm font-semibold"
+                onClick={() => {
+                  dispatch(addDeliveryAddress(null));
+                }}
+              >
+                change
+              </button>
+            )}
           </div>
           {userDetails &&
             userDetails?.phoneNum &&
@@ -177,9 +182,7 @@ const Checkout = () => {
             Payment
           </h2>
           {userDetails && userDetails?.phoneNum && deliveryAddress && (
-            <button className="capitalize font-semibold bg-green-500 px-4 py-1.5 text-white w-full mt-3 rounded-sm">
-              Proceed to pay
-            </button>
+            <PaymentGateway />
           )}
         </div>
         {/* end payment */}

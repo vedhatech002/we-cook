@@ -1,5 +1,5 @@
 import { addCurrentRestaurant, addError, addToCart } from "@/redux/CartSlice";
-import { FOOD_IMG_URL } from "@/utils/constant";
+
 import { useDispatch, useSelector } from "react-redux";
 import toast, { Toaster } from "react-hot-toast";
 

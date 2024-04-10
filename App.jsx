@@ -14,6 +14,7 @@ import Searchpage from "@/components/Searchpage";
 import HeroSection from "@/components/HeroSection";
 import CartPage from "@/components/CartPage";
 import SigninPage from "@/components/SigninPage";
+import OrderSuccessPage from "@/components/OrderSuccessPage";
 
 const AppLayout = () => {
   return (
@@ -55,6 +56,10 @@ const appRouter = createBrowserRouter([
         element: <CartPage />,
       },
     ],
+  },
+  {
+    path: "/orderSuccess",
+    element: <OrderSuccessPage />,
   },
 ]);
 

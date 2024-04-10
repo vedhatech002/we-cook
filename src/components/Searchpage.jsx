@@ -5,6 +5,7 @@ import SuggestionCard from "./SuggestionCard";
 import { triggerResult, triggerSuggestion } from "@/redux/searchResultSlice";
 import SearchResults from "./SearchResults";
 import isNavigateToGetStarted from "@/hooks/isNavigateToGetStarted";
+import CartNotification from "./CartNotification";
 
 const Searchpage = () => {
   isNavigateToGetStarted();

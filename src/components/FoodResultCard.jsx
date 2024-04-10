@@ -1,6 +1,82 @@
 import { Link } from "react-router-dom";
+import { addCurrentRestaurant, addError, addToCart } from "@/redux/CartSlice";
+import { useDispatch, useSelector } from "react-redux";
+import toast, { Toaster } from "react-hot-toast";
+import CartNotification from "./CartNotification";
 
 const FoodResultCard = ({ data }) => {
+  const currentRestaurant = useSelector(
+    (store) => store.cart.currentRestaurant
+  );
+  const cartItems = useSelector((store) => store.cart.items);
+
+  const dispatch = useDispatch();
+
+  const handleItem = () => {
+    const restaurantDetails = data.restaurant?.info;
+    const item = data.info;
+
+    const checkValidItem = (restaurantDetails, item) => {
+      if (restaurantDetails.id !== currentRestaurant.id) {
+        return {
+          errorHeading: "Items already in cart",
+          errorDesc:
+            " Your cart contains items from other restaurant. Would you like to add items from this restaurant, you should clear your cart..",
+        };
+      }
+
+      const isItemExist = cartItems.find((cartitem) => cartitem.id === item.id);
+
+      if (isItemExist) {
+        return {
+          errorHeading: "Item already exists in cart",
+          errorDesc:
+            "Would you like to add more quantity ,you can add through cart page",
+        };
+      }
+
+      return "valid";
+    };
+    if (currentRestaurant) {
+      const checkValid = checkValidItem(restaurantDetails, item);
+
+      if (checkValid === "valid") {
+        dispatch(addCurrentRestaurant(restaurantDetails));
+        dispatch(
+          addToCart({
+            ...item,
+            quantity: 1,
+            cost: item.price ? item.price : item.defaultPrice,
+          })
+        );
+      } else {
+        toast.custom((t) => (
+          <div className="bg-white drop-shadow-md rounded-md p-6 font-poppins max-w-lg space-y-4">
+            <h2 className="text-lg font-semibold">{checkValid.errorHeading}</h2>
+            <p className="font-poppins text-xs text-gray-500">
+              {checkValid.errorDesc}
+            </p>
+            <button
+              onClick={() => toast.dismiss(t.id)}
+              className="px-16 py-1.5 border-[1.5px] border-green-600"
+            >
+              Ok
+            </button>
+          </div>
+        ));
+      }
+    } else {
+      dispatch(addCurrentRestaurant(restaurantDetails));
+      dispatch(
+        addToCart({
+          ...item,
+          quantity: 1,
+          cost: item.price ? item.price : item.defaultPrice,
+        })
+      );
+    }
+  };
+
   return (
     <div className="bg-white font-poppins px-4 py-6 rounded-xl shadow">
       <div className="flex items-center justify-between border-b pb-3 border-dashed">
@@ -70,11 +146,13 @@ const FoodResultCard = ({ data }) => {
               "w-20 text-sm font-semibold text-green-500 bg-white shadow-md px-4 py-1 " +
               (data.info?.imageId ? " absolute  -bottom-2 left-5" : " ")
             }
+            onClick={handleItem}
           >
             Add +
           </button>
         </div>
       </div>
+      <Toaster position="bottom-center" reverseOrder={false} />
     </div>
   );
 };
