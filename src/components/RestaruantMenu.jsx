@@ -4,6 +4,7 @@ import useRestaruantMenu from "@/hooks/useRestaruantMenu";
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import CartNotification from "./CartNotification";
+import RestaruantShimmer from "./Shimmers/RestaruantShimmer";
 
 const RestaruantMenu = () => {
   const [showIndex, setShowIndex] = useState(0);
@@ -120,7 +121,7 @@ const RestaruantMenu = () => {
       </section>
     </main>
   ) : (
-    "loading state to be placed...."
+    <RestaruantShimmer />
   );
 };
 

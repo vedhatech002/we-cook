@@ -15,6 +15,8 @@ import HeroSection from "@/components/HeroSection";
 import CartPage from "@/components/CartPage";
 import SigninPage from "@/components/SigninPage";
 import OrderSuccessPage from "@/components/OrderSuccessPage";
+import HomePageShimmer from "@/components/Shimmers/HomePageShimmer";
+import RestaruantShimmer from "@/components/Shimmers/RestaruantShimmer";
 
 const AppLayout = () => {
   return (
@@ -60,6 +62,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/orderSuccess",
     element: <OrderSuccessPage />,
+  },
+  {
+    path: "/shimmer",
+    element: <RestaruantShimmer />,
   },
 ]);
 
